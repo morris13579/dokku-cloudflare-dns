@@ -73,7 +73,7 @@ function create_cf_dns_record() {
   local result=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/$zone_id/dns_records" \
     -H "Authorization: Bearer $CF_TOKEN" \
     -H "Content-Type: application/json" \
-    --data "{\"type\":\"A\",\"name\":\"$domain\",\"content\":\"$CF_SERVER_IP\",\"proxied\":true}")
+    --data "{\"type\":\"CNAME\",\"name\":\"$domain\",\"content\":\"$CF_SERVER_IP\",\"proxied\":true}")
 
   if [[ $? -ne 0 ]]; then
     _log "Failed to create DNS record (ZoneID: $zone_id; Domain: $domain)"
